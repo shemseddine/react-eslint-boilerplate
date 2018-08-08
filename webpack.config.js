@@ -2,27 +2,32 @@ const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 const htmlWebpackPlugin = new HtmlWebPackPlugin({
-    hash: true,
-    template: "./index.html",
-    filename: "index.html"
+  hash: true,
+  template: "./index.html",
+  filename: "index.html"
 });
 
 module.exports = {
   entry: __dirname + "/index.js",
   output: {
-      path: __dirname + "/dist",
-      filename: "index_bindle.js"
+    path: __dirname + "/dist",
+    filename: "index_bindle.js"
   },
   module: {
     rules: [
-        {
-          test: /(\.jsx|\.js)$/,
-          loader: "babel-loader",
-          exclude: /(node_modules|bower_components)/,
-          options: {
-            cacheDirectory: true,
-          }
-        },
+      {
+        test: /(\.jsx|\.js)$/,
+        loader: "babel-loader",
+        exclude: /(node_modules|bower_components)/,
+        options: {
+          cacheDirectory: true
+        }
+      },
+      {
+        test: /(\.jsx|\.js)$/,
+        loader: "eslint-loader",
+        exclude: /(node_modules)/
+      },
       {
         test: /\.css$/,
         use: [
